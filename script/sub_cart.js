@@ -25,23 +25,35 @@
 window.addEventListener("load", setupCart);
 
 function setupCart() {
-   var addButtons = document.getElementsByClassName(addButtons);
-   addButtons.addEventListener("mousedown", addItem)
+   var addButtons = document.getElementsByClassName("addButton");
+   
+   for (var i = 0; i < addButtons.length; i++) {
+      addButtons[i].onclick = addItem;
+   }
 }
 
-function addItem() {
-   document.getElementByGetBectSibiling(foodItem);
-   foodId(foodItem);
-      var foodDescription.cloneNode(foodItem);
-      var document.getElementById(cart);
-      var duplicateOrder = false
-   for (let i = 0; i < foodId; i++) {
-      if(elementNode=foodId);
-      {foodId > 1+};
-      break;
-   for (let i = 0; i <duplicateOrder; i++);
-      if(duplicateOrder= false);
-      var orderCount(document.createElement(espanElementNode) +=1 );
-      orderCount.firstChild;
+function addItem(e) {
+   var foodItem = e.target.nextElementSibling;
+   var foodID = foodItem.getAttribute("id");
+   var foodDescription = foodItem.cloneNode(true);
+
+   var cartBox = document.getElementById("cart");
+   var duplicateOrder = false;
+
+   for (var n = cartBox.firstElementChild; n = n.nextElementSibling; n !== null) {
+      if (n.id === foodID) {
+         duplicateOrder = true;
+         n.firstElementChild.textContent++;
+         break;
+      }
    }
+
+   if (duplicateOrder === false) {
+      var orderCount = document.createElement("span");
+      orderCount.textContent = "1";
+      foodDescription.insertBefore(orderCount, foodDescription.firstChild);
+      cartBox.appendChild(foodDescription);
+   }
+
+
 }
